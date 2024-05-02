@@ -23,3 +23,5 @@ def canUnlockAll(boxes):
     for G in range(1, n):
         if not opened[G]:
             return False
+
+    return True
