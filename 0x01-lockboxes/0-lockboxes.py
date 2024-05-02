@@ -1,27 +1,17 @@
 #!/usr/bin/python3
+"""Script will unlock list of lists"""
 
 
 def canUnlockAll(boxes):
-    """Determine if all boxes can be opened."""
-    # Check if boxes is a list and if it's not empty
-    if type(boxes) is not list or len(boxes) == 0:
-        return False
+    """This function will take a list of lists and the content
+       of a list will unlock other lists
+    """
 
-    n = len(boxes)
     keys = [0]
-    opened = [False] * n
-    opened[0] = True
-
-    while keys:
-        key = keys.pop()
-        for box in boxes[key]:
-            if box < n and not opened[box]:
-                keys.append(box)
-                opened[box] = True
-
-    # Check if all boxes can be opened
-    for G in range(1, n):
-        if not opened[G]:
-            return False
-
-    return True
+    for key in keys:
+        for boxKey in boxes[key]:
+            if boxKey not in keys and boxKey < len(boxes):
+                keys.append(boxKey)
+    if len(keys) == len(boxes):
+        return True
+    return False
